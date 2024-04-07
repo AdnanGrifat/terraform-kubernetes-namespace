@@ -6,3 +6,14 @@ resource "kubernetes_namespace" "example" {
   }
 }
 
+resource "kubernetes_resource_quota" "example" {
+  metadata {
+    name = "pod-limit"
+  }
+  spec {
+    hard = {
+      pods = 1000
+    }
+    scopes = ["BestEffort"]
+  }
+}
